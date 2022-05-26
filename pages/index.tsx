@@ -1,4 +1,5 @@
 import Head from "next/head";
+import ConnectClients from "../components/connect-clients";
 
 export default function Home() {
   return (
@@ -10,6 +11,8 @@ export default function Home() {
       </Head>
 
       <div>Aaaaa</div>
+
+      <ConnectClients />
     </div>
   );
 }
