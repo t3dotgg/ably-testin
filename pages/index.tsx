@@ -1,5 +1,9 @@
+import dynamic from "next/dynamic";
 import Head from "next/head";
-import ConnectClients from "../components/connect-clients";
+
+const ConnectClients = dynamic(() => import("../components/connect-clients"), {
+  ssr: false,
+});
 
 export default function Home() {
   return (
@@ -10,9 +14,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div>Aaaaa</div>
-
-      <ConnectClients />
+      <div className="w-screen h-screen p-4">
+        <ConnectClients />
+      </div>
     </div>
   );
 }
