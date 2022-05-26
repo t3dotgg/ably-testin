@@ -10,9 +10,23 @@ const DumbClient: React.FC<{ id: number }> = (props) => {
     return () => ablyRef.current.client.close();
   }, []);
 
+  const [connected, setConnected] = React.useState<string[]>([]);
+  React.useEffect(() => {
+    console.log("rebinding presence");
+
+    const presence = ablyRef.current.channel.presence;
+
+    presence.subscribe(() => {
+      presence.get((_err, current) =>
+        setConnected(current?.map((c) => c.clientId) ?? [])
+      );
+    });
+  }, [setConnected]);
+
   return (
-    <div className="flex items-center justify-center m-2 h-12 w-12 border-2">
-      {props.id}
+    <div className="relative flex items-center justify-center m-2 h-16 w-16 border-2">
+      <span className="text-xl">{props.id}</span>
+      <div className="absolute top-0 right-0">{connected.length}</div>
     </div>
   );
 };

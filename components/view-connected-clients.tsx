@@ -12,7 +12,7 @@ const SingleConnectionBox: React.FC<{ id: string }> = (props) => {
 
 export const EmbedView = () => {
   const ablyRef = React.useRef(createAblyClient(-1));
-  const [connected, setConnected] = React.useState<string[]>();
+  const [connected, setConnected] = React.useState<string[]>([]);
 
   React.useEffect(() => {
     console.log("rebinding presence");
@@ -21,7 +21,7 @@ export const EmbedView = () => {
 
     presence.subscribe(() => {
       presence.get((_err, current) =>
-        setConnected(current?.map((c) => c.clientId))
+        setConnected(current?.map((c) => c.clientId) ?? [])
       );
     });
   }, [setConnected]);
