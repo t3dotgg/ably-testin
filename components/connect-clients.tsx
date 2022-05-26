@@ -1,5 +1,4 @@
 import React from "react";
-import * as Ably from "ably";
 import { createAblyClient } from "./create-client";
 
 const DumbClient: React.FC<{ id: number }> = (props) => {
